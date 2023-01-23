@@ -6,12 +6,7 @@ from bars import HudGameLowBar
 from enemies import *
 
 invader_timer = pygame.USEREVENT + 1
-pygame.time.set_timer(invader_timer, 1000)
-
-invaders_size = 0
-enemies_killed = 0
-
-enemies_killed_surf = font2.render('ENEMIES KILLED: ', False, 'Black').convert()
+pygame.time.set_timer(invader_timer, 500)
 
 # main loop
 if __name__ == '__main__':
@@ -21,29 +16,19 @@ if __name__ == '__main__':
                 pygame.quit()
                 sys.exit(0)
             if event.type == invader_timer:
-                invaders.add(SpaceInvader(randint(25, 575)))
-                invaders_size += 1
+                invaders.add(SpaceInvader(randint(50, 550), choice(['green', 'blue', 'purple'])))
 
         if game_activated:
             background.update()
             invaders.draw(screen)
-
             invaders.update(player.bullet_list)
-            if invaders_size > len(invaders):
-                enemies_killed += 1
-                invaders_size -= 1
-            
+
             if lowbar.update(player.ammo, player.max_ammo):
                 game_activated = False
 
             player.update(invaders)
-            enemies_killed_count = font2.render(f'{enemies_killed}', False, 'Black').convert()
-            screen.blit(enemies_killed_surf, (10, 760))
-            screen.blit(enemies_killed_count, (200, 760))
 
         else:
-            enemies_killed = 0
-            invaders_size = 0
             player = Player()
             background = AnimatedBackground()
             main_menu = MainMenu()
