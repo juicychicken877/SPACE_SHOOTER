@@ -1,9 +1,10 @@
 from settings import *
 
-menu_bar = pygame.image.load('images/default/menu_bar.png').convert_alpha()
+menu_bar = pygame.image.load('images/default/main-menu-bar-blue.png').convert_alpha()
 exit_bar = pygame.image.load('images/default/game-hud-exit-bar.png').convert_alpha()
 game_activated = False
 game_exited = False
+
 
 # bar that you can see below the player when you play
 class HudGameLowBar:
@@ -17,22 +18,8 @@ class HudGameLowBar:
         self.exit_text = self.font2.render('EXIT', False, 'Black')
         self.exit_text_rect = self.exit_text.get_rect(midtop=(520, 742))
 
-        self.ammo_image = pygame.image.load('images/default/game-hud-bullet.jpg').convert_alpha()
-        self.ammo_rect = self.ammo_image.get_rect(center=(400, 762))
-
-        self.max = self.font.render('MAX', False, 'Black').convert()
-        self.ammo = self.font.render('AMU', False, 'Black').convert()
-
-        #self.Score = self.font2.render(f'SCORE:  {SCORE}', False, 'Black')
-         #self.Score_rect = self.Score.get_rect(center=(110, 765))
-    # def drawHPBar(self, player_hp):
-        # pygame.draw.rect(screen, 'Black', pygame.Rect(15, 737, 210, 55))
-        # pygame.draw.rect(screen, 'Red', pygame.Rect(20, 742, player_hp*2, 45))
-
-        # self.HP_Text = self.font.render(f'{player_hp}', False, 'White').convert()
-        # self.HP_Rect = self.HP_Text.get_rect(center=(120, 764))
-
-        # screen.blit(self.HP_Text, self.HP_Rect)
+        self.ammo_image = pygame.image.load('images/xcf/game-hud-bullet.xcf').convert_alpha()
+        self.ammo_rect = self.ammo_image.get_rect(midleft=(10, 762))
 
     def drawExitBar(self):
         screen.blit(self.exit_bar, self.exit_bar_rect)
@@ -40,19 +27,14 @@ class HudGameLowBar:
 
     def drawAmmunition(self, player_ammo, player_max_ammo):
         self.ammo_number = self.font2.render('INF', False, 'Black').convert()
-        self.ammo_number_rect = self.ammo_number.get_rect(center=(340, 745))
+        self.ammo_number_rect = self.ammo_number.get_rect(center=(100, 745))
 
         self.max_ammo = self.font2.render(f'{player_max_ammo}', False, 'Black').convert()
-        self.max_ammo_rect = self.max_ammo.get_rect(center=(340, 780))
+        self.max_ammo_rect = self.max_ammo.get_rect(center=(100, 780))
 
         screen.blit(self.ammo_image, self.ammo_rect)
         screen.blit(self.ammo_number, self.ammo_number_rect)
         screen.blit(self.max_ammo, self.max_ammo_rect)
-        screen.blit(self.ammo, (245, 735))
-        screen.blit(self.max, (245, 770))
-
-    # def drawScore(self):
-        # screen.blit(self.Score, self.Score_rect)
 
     def isExitBarClicked(self):
         global game_exited, game_activated
@@ -73,12 +55,11 @@ class HudGameLowBar:
         pygame.draw.rect(screen, 'Gray',pygame.Rect(0, 725, 600, 75))
         # HP BAR
         self.drawAmmunition(player_ammo, player_max_ammo)
-        # self.drawHPBar(player_hp)
         self.isExitBarClicked()
         self.drawExitBar()
-        # self.drawScore()
         return game_exited
 
+    
 # main menu bars
 class MainMenuStartGameBar:
     def __init__(self):
