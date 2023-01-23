@@ -1,5 +1,5 @@
 import pygame, sys
-from random import randint
+from random import randint, choice
 
 pygame.init()
 
