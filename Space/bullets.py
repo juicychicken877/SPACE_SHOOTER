@@ -22,7 +22,7 @@ class PlayerBullet(pygame.sprite.Sprite):
         self.move_bullet()
         self.isOutOfScreen()
 
-        
+
 class SpaceInvaderBullet(pygame.sprite.Sprite):
     def __init__(self, invader_x, invader_y):
         super().__init__()
@@ -30,7 +30,7 @@ class SpaceInvaderBullet(pygame.sprite.Sprite):
         self.image = pygame.image.load('images/default/bullet-red.png').convert_alpha()
         self.rect = self.image.get_rect(center=(invader_x, invader_y))
 
-        self.speed = 10
+        self.speed = 5
 
     def move_bullet(self):
         self.rect.y += self.speed
