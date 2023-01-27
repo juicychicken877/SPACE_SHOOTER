@@ -10,7 +10,7 @@ class Player:
         self.ammo = 100
         self.max_ammo = 100
 
-        self.shoot_cooldown = 200
+        self.shoot_cooldown = 250
 
         self.shoot_sound = pygame.mixer.Sound('sounds/shoot.wav')
         self.shoot_sound.set_volume(0.1)
@@ -43,7 +43,7 @@ class Player:
     def shoot(self):
         self.shoot_sound.play()
         self.bullet_list.add(PlayerBullet(self.rect.centerx))
-        self.shoot_cooldown = 200
+        self.shoot_cooldown = 250
 
     def isShot(self, enemies_group):
         for sprite in enemies_group:
