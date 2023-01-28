@@ -29,7 +29,7 @@ if __name__ == '__main__':
             invaders.update(player.bullet_list)
     
             # if invader got killed
-            if len(invaders) != invaders_size:
+            if len(invaders) < invaders_size:
                 score += 100
                 invaders_size -= 1
 
@@ -43,6 +43,8 @@ if __name__ == '__main__':
             screen.blit(score_count, (225, 760))
             screen.blit(score_text, (225, 725))
         else:
+            invaders_size = 0
+            score = 0
             
             player = Player()
             background = AnimatedBackground()
